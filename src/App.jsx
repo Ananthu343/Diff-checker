@@ -37,8 +37,8 @@ export default function App() {
     element.href = URL.createObjectURL(file);
     element.download = "myFile.txt";
     document.body.appendChild(element);
-    element.click();  
-  }; 
+    element.click();
+  };
 
   return (
     <div className="text-white">
@@ -78,7 +78,7 @@ export default function App() {
           </div>
         </div>
       }
-      <Toaster/>
+      <Toaster />
     </div>
   )
 }

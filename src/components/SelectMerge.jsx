@@ -3,41 +3,41 @@ import { mainContext } from '../context/context';
 import toast from 'react-hot-toast';
 
 const SelectMerge = ({ lineNum, close }) => {
-    const [selectedOld,setSelectedOld] = useState("")
-    const [selectedNew,setSelectedNew] = useState("")
-    const {handleSelectMerge, text1, text2} = mainContext()
+    const [selectedOld, setSelectedOld] = useState("")
+    const [selectedNew, setSelectedNew] = useState("")
+    const { handleSelectMerge, text1, text2 } = mainContext()
 
     const index = lineNum - 1;
 
-    useEffect(()=>{
-         const oldArr = text1.split('\n')
-         const newArr = text2.split('\n')
-         setSelectedOld(oldArr[index])
-         setSelectedNew(newArr[index])
-    },[handleSelectMerge])
+    useEffect(() => {
+        const oldArr = text1.split('\n')
+        const newArr = text2.split('\n')
+        setSelectedOld(oldArr[index])
+        setSelectedNew(newArr[index])
+    }, [handleSelectMerge])
 
     const handleModify = (direction) => {
-       switch (direction) {
-        case "right":
-            handleSelectMerge(lineNum,"right")
-            toast.success("Text moved to new")
-            break;
-       
-        case "left":
-            handleSelectMerge(lineNum,"left")
-            toast.success("Text moved to old")
-            break;
-       
+        switch (direction) {
+            case "right":
+                handleSelectMerge(lineNum, "right")
+                toast.success("Text moved to new")
+                break;
+
+            case "left":
+                handleSelectMerge(lineNum, "left")
+                toast.success("Text moved to old")
+                break;
+
             case "remove":
-                handleSelectMerge(lineNum,"remove")
+                handleSelectMerge(lineNum, "remove")
                 close(false)
                 toast.success(`Removed line number: ${lineNum}`)
-            break;
-            
+                break;
+
             default:
                 break;
-            }
         }
+    }
 
     return (
         <div className='fixed top-0 left-0 w-screen h-screen bg-black/60 flex justify-center items-center'>
@@ -49,10 +49,10 @@ const SelectMerge = ({ lineNum, close }) => {
                     </svg>
                 </div>
                 <div className='flex gap-2 h-[200px] w-full items-center justify-between p-2'>
-                    <textarea disabled value={lineNum + " "+ selectedOld}
+                    <textarea disabled value={lineNum + " " + selectedOld}
                         className="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200  px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
                     ></textarea>
-                    <textarea disabled value={lineNum + " "+ selectedNew}
+                    <textarea disabled value={lineNum + " " + selectedNew}
                         className="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200  px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
                     ></textarea>
                 </div>
