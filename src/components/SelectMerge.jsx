@@ -1,9 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { mainContext } from '../context/context';
 
 const SelectMerge = ({ lineNum, close }) => {
-    const {} = mainContext()
-    console.log(lineNum);
+    const [selectedOld,setSelectedOld] = useState("")
+    const [selectedNew,setSelectedNew] = useState("")
+    const {handleSelectMerge, text1, text2} = mainContext()
+
+    const index = lineNum - 1;
+
+    useEffect(()=>{
+         const oldArr = text1.split('\n')
+         const newArr = text2.split('\n')
+         setSelectedOld(oldArr[index])
+         setSelectedNew(newArr[index])
+    },[handleSelectMerge])
+
+    const handleModify = (direction) => {
+       switch (direction) {
+        case "right":
+            handleSelectMerge(lineNum,"right")
+            break;
+       
+        case "left":
+            handleSelectMerge(lineNum,"left")
+            break;
+       
+        case "remove":
+            handleSelectMerge(lineNum,"remove")
+            close(false)
+            break;
+       
+        default:
+            break;
+       }
+    }
 
     return (
         <div className='fixed top-0 left-0 w-screen h-screen bg-black/60 flex justify-center items-center'>
@@ -15,21 +45,21 @@ const SelectMerge = ({ lineNum, close }) => {
                     </svg>
                 </div>
                 <div className='flex gap-2 h-[200px] w-full items-center justify-between p-2'>
-                    <textarea disabled value={lineNum + " "+"bbjbj"}
+                    <textarea disabled value={lineNum + " "+ selectedOld}
                         className="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200  px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
                     ></textarea>
-                    <textarea disabled value={lineNum + " "+"huguuu"}
+                    <textarea disabled value={lineNum + " "+ selectedNew}
                         className="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200  px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
                     ></textarea>
                 </div>
                 <div className='flex justify-between gap-2'>
-                    <button onClick={() => handleMerge("right")} className="bg-white hover:bg-black text-black hover:text-white font-semibold py-1 px-2 md:py-2 md:px-4 border border-gray-400 rounded shadow">
+                    <button onClick={() => handleModify("right")} className="bg-white hover:bg-black text-black hover:text-white font-semibold py-1 px-2 md:py-2 md:px-4 border border-gray-400 rounded shadow">
                         To right -
                     </button>
-                    <button onClick={() => handleMerge("right")} className="bg-white hover:bg-black text-black hover:text-white font-semibold py-1 px-2 md:py-2 md:px-4 border border-gray-400 rounded shadow">
+                    <button onClick={() => handleModify("remove")} className="bg-white hover:bg-black text-black hover:text-white font-semibold py-1 px-2 md:py-2 md:px-4 border border-gray-400 rounded shadow">
                         Remove
                     </button>
-                    <button onClick={() => handleMerge("left")} className="bg-white hover:bg-black text-black hover:text-white font-semibold py-1 px-2 md:py-2 md:px-4 border border-gray-400 rounded shadow">
+                    <button onClick={() => handleModify("left")} className="bg-white hover:bg-black text-black hover:text-white font-semibold py-1 px-2 md:py-2 md:px-4 border border-gray-400 rounded shadow">
                         - To left
                     </button>
                 </div>

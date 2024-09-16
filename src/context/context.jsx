@@ -60,7 +60,8 @@ export const ContextProvider = ({children}) => {
     text2,
     setText2,
     handleMerge,
-    result
+    result,
+    handleSelectMerge
    }
    
     return <context.Provider value={values}>
