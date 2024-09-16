@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { mainContext } from '../context/context';
+import toast from 'react-hot-toast';
 
 const SelectMerge = ({ lineNum, close }) => {
     const [selectedOld,setSelectedOld] = useState("")
@@ -19,21 +20,24 @@ const SelectMerge = ({ lineNum, close }) => {
        switch (direction) {
         case "right":
             handleSelectMerge(lineNum,"right")
+            toast.success("Text moved to new")
             break;
        
         case "left":
             handleSelectMerge(lineNum,"left")
+            toast.success("Text moved to old")
             break;
        
-        case "remove":
-            handleSelectMerge(lineNum,"remove")
-            close(false)
+            case "remove":
+                handleSelectMerge(lineNum,"remove")
+                close(false)
+                toast.success(`Removed line number: ${lineNum}`)
             break;
-       
-        default:
-            break;
-       }
-    }
+            
+            default:
+                break;
+            }
+        }
 
     return (
         <div className='fixed top-0 left-0 w-screen h-screen bg-black/60 flex justify-center items-center'>

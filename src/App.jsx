@@ -3,6 +3,7 @@ import InputText from "./components/InputText";
 import { mainContext } from './context/context'
 import Diff from "./components/Diff";
 import Header from "./components/Header";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function App() {
   const [showdiff, setShowDiff] = useState(false)
@@ -26,6 +27,7 @@ export default function App() {
 
   const handleFileDownload = () => {
     if (result.length == 0) {
+      toast.error("No text found")
       return
     }
     const element = document.createElement("a");
@@ -76,6 +78,7 @@ export default function App() {
           </div>
         </div>
       }
+      <Toaster/>
     </div>
   )
 }

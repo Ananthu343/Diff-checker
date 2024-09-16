@@ -1,8 +1,21 @@
-# React + Vite
+# Instructions on how to set up and run the application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* Clone the repository to your local system
+* run command "npm install"
+* start the application using the command "npm run dev"
 
-Currently, two official plugins are available:
+# List of features implemented
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Text comparison between two strings
+* Overall side merging to right or left
+* Selective line merging to right or left
+* Remove of line
+* Dynamic edit in the text area itself
+* Dowonload the new text as .txt file
+* Copy to clipboard function to copy the new text.
+
+# Any additional libraries or tools used
+
+* prismjs - for highlighting text
+* react-diff-view - for difference view
+* react-hot-toast - for notification
