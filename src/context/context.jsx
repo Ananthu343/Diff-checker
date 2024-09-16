@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 
 const context = createContext()
 
@@ -7,6 +7,10 @@ export const ContextProvider = ({ children }) => {
     const [text1, setText1] = useState(``)
     const [text2, setText2] = useState(``)
     const [result, setResult] = useState(``)
+
+    useEffect(()=>{
+        setResult(text2)
+    },[text2])
 
     function handleMerge(direction) {
 

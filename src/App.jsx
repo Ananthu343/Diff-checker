@@ -40,6 +40,22 @@ export default function App() {
     element.click();
   };
 
+  const handleCopy = () =>{
+    if (result.length == 0) {
+      toast.error("No text found")
+      return
+    }
+    async function copyTextToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast.success("Text copied to clipboard!")
+      } catch (err) {
+        console.error('Failed to copy text:', err);   
+      }
+    }
+    copyTextToClipboard(result)
+  }
+
   return (
     <div className="text-white">
       <Header />
@@ -63,7 +79,7 @@ export default function App() {
             <Diff />
           </div>
           <div className="p-3 gap-4 flex border mt-5 rounded-full px-[10px]">
-            <button className="rounded-full bg-gradient-to-tr from-slate-800 to-slate-700 p-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+            <button onClick={handleCopy} className="rounded-full bg-gradient-to-tr from-slate-800 to-slate-700 p-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
               <img width="20" height="20" src="https://img.icons8.com/office/40/copy.png" alt="copy" />
             </button>
             <button onClick={() => handleMerge("right")} className="bg-white hover:bg-black text-black hover:text-white font-semibold py-1 px-2 md:py-2 md:px-4 border border-gray-400 rounded shadow">
