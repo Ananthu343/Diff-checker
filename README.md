@@ -8,7 +8,7 @@
 
 * Text comparison between two strings
 * Overall side merging to right or left
-* Selective line merging to right or left
+* Selective line merging to right or left (click the line number to pop up the modal)
 * Remove of line
 * Dynamic edit in the text area itself
 * Dowonload the new text as .txt file
